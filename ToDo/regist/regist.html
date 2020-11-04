@@ -14,8 +14,11 @@
         </div>
         <div class="main">
             <div class="main_contents">
-                <textarea rows="10" cols="50" id="todo">ここに記入してください</textarea>
-                <button type="button" class="todo_regist" id="todoRegist">記載内容を登録</button>
+                <form action="/post" method="POST">
+                    <input class="inputName" type="text" name="valueName">
+                    <textarea class="inputTodo" rows="10" cols="50" name="valueTodo">ここに記入してください</textarea>
+                    <button type="button" class="todo_regist" id="todoRegist">記載内容を登録</button>
+                </form>
             </div>
         </div>
     </body>
