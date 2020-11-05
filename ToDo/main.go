@@ -10,7 +10,8 @@ import (
 //}
 
 func main() {
-	a := api.ins()
+	insert := api.NewIns()
+
 }
 
 //func メソッド名(w http.ResponseWriter, r *http.Request){
