@@ -7,6 +7,16 @@ import (
 
 type Conn struct{}
 
+type db struct{}
+
+func GetConn() {
+
+}
+
+func CloseConn() {
+
+}
+
 //DBに接続するための関数
 func dbConn() {
 	var db *sql.DB
@@ -14,6 +24,5 @@ func dbConn() {
 	if err != nil {
 		panic(err.Error())
 	}
-	defer db.Close()
-	return
+	return db
 }
