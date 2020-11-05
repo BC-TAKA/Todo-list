@@ -11,7 +11,6 @@ import (
 
 func main() {
 	insert := api.NewIns()
-
 }
 
 //func メソッド名(w http.ResponseWriter, r *http.Request){
