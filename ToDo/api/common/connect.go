@@ -5,6 +5,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+type Conn struct{}
+
 //DBに接続するための関数
 func dbConn() {
 	var db *sql.DB
