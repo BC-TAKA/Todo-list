@@ -7,10 +7,10 @@ import (
 
 //DBに登録を行う関数
 func ins() {
-	db := conn.dbConn()
+	db := api.dbConn()
 	insDB, err = db.Exec(
 		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,
-		"test11", "testTodo11",
+		"test11-2", "testTodo11-2",
 	)
 	if err != nil {
 		log.Fatal(err)
