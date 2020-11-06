@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+//インスタンスするための空の構造体
 type Ins struct{}
 
 //DBに登録を行う関数
