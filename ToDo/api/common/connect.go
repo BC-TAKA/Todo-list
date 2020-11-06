@@ -6,10 +6,10 @@ import (
 )
 
 //DBに接続するための関数
-func dbConn() {
-	_, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo")
+func dbConn() *sql.DB {
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo")
 	if err != nil {
 		panic(err.Error())
 	}
-	return
+	return db
 }
