@@ -13,7 +13,7 @@ func ins() {
 	con := common.NewConn()
 	db := con.DbConn()
 
-	insDB, err = db.Exec(
+	insDB, err := db.Exec(
 		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,
 		"test11-2", "testTodo11-2",
 	)
