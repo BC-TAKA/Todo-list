@@ -11,7 +11,7 @@ type Ins struct{}
 
 //DBに登録を行う関数
 func ins() {
-	db := con.DbConn()
+	db := common.DbConn()
 	insDB, err := db.Exec(
 		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,
 		"test11-2", "testTodo11-2",
