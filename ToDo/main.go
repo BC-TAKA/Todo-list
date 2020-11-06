@@ -1,11 +1,6 @@
 package main
 
-import (
-	"./api"
-)
+import ()
 
 func main() {
-
-	insert := api.Ins()
-
 }
