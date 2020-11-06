@@ -5,18 +5,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type Conn struct{}
-
-type db struct{}
-
-func GetConn() {
-
-}
-
-func CloseConn() {
-
-}
-
 //DBに接続するための関数
 func dbConn() {
 	var db *sql.DB
@@ -24,5 +12,5 @@ func dbConn() {
 	if err != nil {
 		panic(err.Error())
 	}
-	return db
+	return
 }
