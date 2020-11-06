@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	insert := api.NewIns()
+	insert := api.Ins()
 
 }
