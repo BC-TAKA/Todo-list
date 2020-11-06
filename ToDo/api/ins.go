@@ -1,7 +1,7 @@
 package api
 
 import (
-	"../common"
+	"ToDo/common"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 )
