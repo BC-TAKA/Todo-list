@@ -14,17 +14,8 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 	ecd.Encode(&todos)
 }
 
-func handleRequests() {
-	http.HandleFunc("/", listEncode)
-	log.Fatal(http.ListenAndServe(":8081", nil))
-}
-
 func main() {
-	handleRequests()
-	//	api.Ins()
-	// todos := api.List()
-	// ecd := json.NewEncoder(os.Stdout)
-	// if err := ecd.Encode(todos); err != nil {
-	// 	fmt.Println(err)
-	// }
+	http.Handle("/", http.FileServer(http.Dir(".")))
+	http.HandleFunc("/todos", listEncode)
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
