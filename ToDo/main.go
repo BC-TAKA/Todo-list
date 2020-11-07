@@ -15,6 +15,7 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
 	http.HandleFunc("/todos", listEncode)
 	log.Fatal(http.ListenAndServe(":8081", nil))
