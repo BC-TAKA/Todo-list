@@ -8,7 +8,7 @@ fetch('http://localhost:8081/todos')
             const aTag = document.createElement("a")
 
             Object.entries(info).forEach(([key, val]) => {
-                const aTag = document.createElement("span")
+                const span = document.createElement("span")
                 span.innerText = `${key}: ${val}`
                 aTag.appendChild(span)
                 aTag.appendChild(document.createElement("br"))
