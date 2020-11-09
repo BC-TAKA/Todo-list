@@ -3,12 +3,12 @@ fetch('http://localhost:8081/todos')
     console.log(response.status); // => 200
     return response.json().then(userInfo => {
         // JSONパースされたオブジェクトが渡される
-        const parent = document.getElementById("parent")
+        var parent = document.getElementById("parent")
         userInfo.forEach(info => {
-            const aTag = document.createElement("a")
+            var aTag = document.createElement("a")
 
             Object.entries(info).forEach(([key, val]) => {
-                const span = document.createElement("span")
+                var span = document.createElement("span")
                 span.innerText = `${key}: ${val}`
                 aTag.appendChild(span)
                 aTag.appendChild(document.createElement("br"))
