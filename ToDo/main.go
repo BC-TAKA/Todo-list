@@ -8,6 +8,10 @@ import (
 	"github.com/raveger/Todo-list/ToDo/api"
 )
 
+// func insertTodo(w http.ResponseWriter, r *http.Request) {
+// 	v := r.FormValue("valueName")
+// }
+
 func listEncode(w http.ResponseWriter, r *http.Request) {
 	todos := api.List()
 	ecd := json.NewEncoder(w)
