@@ -11,8 +11,9 @@ fetch('http://localhost:8081/todos')
                 var span = document.createElement("span")
                 span.innerText = `${key}: ${val}`
                 aTag.appendChild(span)
-                aTag.appendChild(document.createElement("br"))
             });
+            parent.appendChild(aTag)
+            parent.appendChild(document.createElement("br"))
         });
         // console.log(userInfo); // => {...} userInfoにデコード済みのものが入っている
         // userInfo.forEach(element => {
