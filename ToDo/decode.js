@@ -1,15 +1,19 @@
-//登録ボタンのクリックをトリガーに、nameとtodoを取得
-document.getElementById("todoRegist").onclick = function() {
-    var registName = document.getElementsByName(registName).value;
-    var registTodo = document.getElementsByName(registTodo).value;
+function clickBtn() {
+    const form1 = new FormData(document.getElementById("form1"));
+        console.log(form1)
 
-    //JSON化してAPIに渡したいデータ
-    var obj = {
-        "name": registName,
-        "todo": registTodo
-    };
-
-    //データをJSON文字列に変換
-    var json = JSON.stringify(obj);
-    CheckJson(json)
+    fetch("http://localhost:8081/regist/regist.html", {
+            method:"POST",
+            body:form1
+        })
+        .then(function(response1) {
+            console.log("status=" + response1.status);
+            return response1.json();
+        })
+        .then(function(data1) {
+            console.log(JSON.stringify(data1));
+        })
+        .catch(function(err1) {
+            console.log("err=" + err1);
+        });
 }

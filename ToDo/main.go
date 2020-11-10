@@ -8,9 +8,9 @@ import (
 	"github.com/raveger/Todo-list/ToDo/api"
 )
 
-// func insertTodo(w http.ResponseWriter, r *http.Request) {
-// 	v := r.FormValue("valueName")
-// }
+func listInsert(w http.ResponseWriter, r *http.Request) {
+	api.Ins()
+}
 
 func listEncode(w http.ResponseWriter, r *http.Request) {
 	todos := api.List()
@@ -21,6 +21,7 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
+	http.HandleFunc("/insert", listInsert)
 	http.HandleFunc("/todos", listEncode)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="ja">
     <head>
         <meta charset="UTF-8">
         <title>ToDo新規登録</title>
-        <link rel="stylesheet" href="regist.css">
+        <!-- <link rel="stylesheet" href="regist.css"> -->
     </head>
     <body>
         <div class="top_wrapper">
@@ -14,13 +14,13 @@
         </div>
         <div class="main">
             <div class="main_contents">
-                <form action="/post" method="POST">
-                    <input class="inputName" type="text" name="valueName">
-                    <input class="inputTodo" type="text" name="valueTodo">
-                    <button type="button" class="todo_regist" id="todoRegist">記載内容を登録</button>
+                <form id="form1">
+                    <input class="inputName" type="text" name="name" id="valueName">
+                    <input class="inputTodo" type="text" name="todo" id="valueTodo">
+                    <input type="button" value="記載内容を登録" class="todo_regist" id="todoRegist" onclick="clickBtn()">
                 </form>
             </div>
         </div>
+        <script src="../decode.js"></script>
     </body>
-    <script src="../decode.js"></script>
 </html>
