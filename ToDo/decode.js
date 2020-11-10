@@ -6,9 +6,10 @@ document.getElementById("todoRegist").onclick = function() {
     //JSON化してAPIに渡したいデータ
     var obj = {
         "name": registName,
-        "TODO": registTodo
+        "todo": registTodo
     };
 
     //データをJSON文字列に変換
     var json = JSON.stringify(obj);
+    CheckJson(json)
 }
