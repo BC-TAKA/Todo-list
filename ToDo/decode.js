@@ -1,8 +1,21 @@
+//登録ボタンクリックをトリガーにnameとtodoの値を取得
 function clickBtn() {
-    const form1 = new FormData(document.getElementById("form1"));
-        console.log(form1)
+    var nameValue = document.getElementById("valueName").value;
+    var todoValue = document.getElementById("valueTodo").value;
+    
+    //オブジェクト化
+    var obj = {
+        "name": nameValue,
+        "TODO": todoValue
+    }
 
-    fetch("http://localhost:8081/regist/regist.html", {
+    //objをjson形式に変換
+    var json = JSON.stringify(obj);
+    console.log(json)
+
+        //fetchでAPIにJSONを送信する
+        //API側でのエンドポイントに直す
+        fetch("http://localhost:8081/regist/regist.html", {
             method:"POST",
             body:form1
         })
