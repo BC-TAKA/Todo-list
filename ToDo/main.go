@@ -8,9 +8,12 @@ import (
 	"github.com/raveger/Todo-list/ToDo/api"
 )
 
-//新規登録のエンドポイントも/todosにするため
-//listEncodeでの処理内容をHTTPメソッド参照で分岐させる必要がある。
-//兼平さんのサンプル参照
+func insertTodo(w http.ResponseWriter, r *http.Request) {
+	insert := api.Ins()
+	dcd := json.NewDecoder(r.body)
+	dcd.Decode(&insert)
+}
+
 func listEncode(w http.ResponseWriter, r *http.Request) {
 	todos := api.List()
 	ecd := json.NewEncoder(w)
@@ -20,7 +23,14 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
-	//	http.HandleFunc("/insert", listInsert)
-	http.HandleFunc("/todos", listEncode)
+	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodGet:
+			listEncode(w, r)
+			//POST形式でメソッドがきたらこの分岐
+		case http.MethodPost:
+			insertTodo(w, r)
+		}
+	})
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
