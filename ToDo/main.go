@@ -15,7 +15,7 @@ type getData struct {
 
 func test(w http.ResponseWriter, r *http.Request) {
 	var todo getData
-	if err := json.NewDecoder(r.body).Decode(&todo); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
 		http.Error(w, err.Error(), 400)
 		return
 	}
