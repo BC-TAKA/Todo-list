@@ -7,18 +7,19 @@ import (
 	"github.com/raveger/Todo-list/ToDo/common"
 )
 
-// type getData struct {
-// 	Name string `json:"name"`
-// 	Todo string `json:"todo"`
-// }
+type GetData struct {
+	Name string `json:"name"`
+	Todo string `json:"todo"`
+}
 
 //DBに登録を行う関数
-func Ins() {
+func Ins(todo GetData) {
+	log.Println(todo)
 
 	db := common.DbConn()
 	_, err := db.Exec(
 		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,
-		"testName", "testTODO",
+		todo.Name, todo.Todo,
 	)
 	if err != nil {
 		log.Fatal(err)

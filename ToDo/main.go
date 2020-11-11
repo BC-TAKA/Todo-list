@@ -8,17 +8,18 @@ import (
 	"github.com/raveger/Todo-list/ToDo/api"
 )
 
-type getData struct {
+type GetData struct {
 	Name string `json:"name"`
 	Todo string `json:"todo"`
 }
 
 func test(w http.ResponseWriter, r *http.Request) {
-	var todo getData
+	var todo api.GetData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
 		http.Error(w, err.Error(), 400)
 		return
 	}
+	api.Ins(todo)
 }
 
 func listEncode(w http.ResponseWriter, r *http.Request) {
