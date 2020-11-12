@@ -11,12 +11,13 @@ fetch('http://localhost:8081/todos')
                 const span = document.createElement("span");
                 span.innerText = `${key}: ${val}  `;
                 aTag.appendChild(span);
-                //htmlにinfo.IDを渡すことで遷移先を分岐
-                aTag.setAttribute('href','/detail/detail.html?' + info.ID);
+                //htmlに3つの値をを渡すことで遷移先を分岐させたい
+                aTag.setAttribute('href','/detail/detail.html?' +info.ID +info.Name +info.Todo);
             });
             parent.appendChild(aTag);
             parent.appendChild(document.createElement("br"));
-            //console.log(info.ID);
+            parent.appendChild(document.createElement("br"));
+            console.log(info.ID,info.Name,info.Todo);
         });
     });
 });
