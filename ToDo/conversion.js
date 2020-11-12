@@ -25,16 +25,19 @@ function displayTodo() {
                 parent.appendChild(document.createElement("br"));
                 console.log(info.ID,info.Name,info.Todo);
                 btn.onclick = function() {
-                    console.log(info.ID)
+                    console.log(info.ID);
                     fetch('http://localhost:8081/todos?id=${info.ID}', {
                         method: 'DELETE',
                     }).then((response) => {
                         if (response.ok) {
                             console.log("削除しました。");
                             //表示内容を更新させる文
+                        } else {
+                            console.log("エラーです。");
                         }
-
-                    })
+                    }).catch((err) => {
+                        console.log(err);
+                    });
                 }
             });
         });
