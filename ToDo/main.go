@@ -13,6 +13,10 @@ type GetData struct {
 	Todo string `json:"todo"`
 }
 
+// func deleteTodo(w http.ResponseWriter, r *http.Request) {
+
+// }
+
 func insertTodo(w http.ResponseWriter, r *http.Request) {
 	var todo api.GetData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
