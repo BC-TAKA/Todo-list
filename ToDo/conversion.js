@@ -9,7 +9,7 @@ fetch('http://localhost:8081/todos')
 
             Object.entries(info).forEach(([key, val]) => {
                 const span = document.createElement("span");
-                span.innerText = `${key}: ${val}`;
+                span.innerText = `${key}: ${val}  `;
                 aTag.appendChild(span);
                 //htmlにinfo.IDを渡すことで遷移先を分岐
                 aTag.setAttribute('href','/detail/detail.html?' + info.ID);

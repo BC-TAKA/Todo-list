@@ -7,9 +7,9 @@ function clickBtn() {
     var obj = {
         "name": nameValue,
         "todo": todoValue
-    }
+    };
 
-    var changeJson = JSON.stringify(obj)
+    var changeJson = JSON.stringify(obj);
     console.log(changeJson);
 
         //fetchでJSON形式に換えてAPIに送信する
@@ -21,7 +21,7 @@ function clickBtn() {
             body: changeJson,
         }).then(function(response1) {
             console.log("status=" + response1.status);
-        })
+         })
         .then(function(data1) {
             console.log(body);
         })

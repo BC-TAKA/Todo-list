@@ -13,7 +13,7 @@ type GetData struct {
 	Todo string `json:"todo"`
 }
 
-func test(w http.ResponseWriter, r *http.Request) {
+func insertTodo(w http.ResponseWriter, r *http.Request) {
 	var todo api.GetData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
 		http.Error(w, err.Error(), 400)
@@ -32,6 +32,13 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
-	http.HandleFunc("/todos", test)
+	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodGet:
+			listEncode(w, r)
+		case http.MethodPost:
+			insertTodo(w, r)
+		}
+	})
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
