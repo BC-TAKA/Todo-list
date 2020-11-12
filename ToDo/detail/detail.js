@@ -1,6 +1,6 @@
 var url = document.location.href;
 
-//var result = url.split('?');
+var result = url.split('?');
 
 console.log(result[Info.ID]);
 

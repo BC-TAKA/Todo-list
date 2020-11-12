@@ -23,7 +23,6 @@ func insertTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func listEncode(w http.ResponseWriter, r *http.Request) {
-	//ここで分岐させるように修正
 	todos := api.List()
 	ecd := json.NewEncoder(w)
 	ecd.Encode(&todos)
