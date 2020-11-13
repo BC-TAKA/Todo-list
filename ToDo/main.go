@@ -14,10 +14,6 @@ type GetData struct {
 	Todo string `json:"todo"`
 }
 
-type SelectData struct {
-	id int
-}
-
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 	if id == "" {
