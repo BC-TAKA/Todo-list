@@ -12,7 +12,7 @@ type SearchElements struct {
 	Todo string
 }
 
-func Search(id int) {
+func Search(id int) []SearchElements {
 	var searchId int
 	var searchName string
 	var searchTodo string
