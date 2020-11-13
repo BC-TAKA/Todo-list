@@ -7,8 +7,9 @@ import (
 )
 
 func Del(id int) {
+	log.Println(id)
 	db := common.DbConn()
-	if _, err := db.Exec("DELETE FOROM todolist WHERE id=?", id); err != nil {
+	if _, err := db.Exec("DELETE FROM todolist WHERE id=?", id); err != nil {
 		log.Fatal(err)
 	}
 }
