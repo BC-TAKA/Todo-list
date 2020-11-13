@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/raveger/Todo-list/ToDo/api"
 )
@@ -15,9 +16,11 @@ type GetData struct {
 }
 
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
-	if id == "" {
-		http.Error(w, "no id", 400)
+	var id int
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	// idInt, _ = strconv.Atoi(id)
+	if err != nil || id < 1 {
+		http.Error(w, "ID not found", 400)
 		return
 	}
 	fmt.Println(id)
