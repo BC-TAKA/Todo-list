@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -13,9 +14,19 @@ type GetData struct {
 	Todo string `json:"todo"`
 }
 
-// func deleteTodo(w http.ResponseWriter, r *http.Request) {
+type SelectData struct {
+	id int
+}
 
-// }
+func deleteTodo(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	if id == "" {
+		http.Error(w, "no id", 400)
+		return
+	}
+	fmt.Println(id)
+	//	api.Del(id)
+}
 
 func insertTodo(w http.ResponseWriter, r *http.Request) {
 	var todo api.GetData
@@ -41,6 +52,8 @@ func main() {
 			listEncode(w, r)
 		case http.MethodPost:
 			insertTodo(w, r)
+		case http.MethodDelete:
+			deleteTodo(w, r)
 		}
 	})
 	log.Fatal(http.ListenAndServe(":8081", nil))

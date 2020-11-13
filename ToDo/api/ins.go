@@ -24,5 +24,4 @@ func Ins(todo GetData) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }
