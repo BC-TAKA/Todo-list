@@ -27,7 +27,7 @@
                     //console.log(info.ID);
                     const id = info.ID;
                     console.log(id);
-                    fetch("http://localhost:8081/todos?id=${id}", {
+                    fetch(`http://localhost:8081/todos?id=${id}`, {
                         method: 'DELETE',
                     }).then((response) => {
                         if (response.ok) {
