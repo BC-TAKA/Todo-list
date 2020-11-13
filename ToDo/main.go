@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -18,13 +17,12 @@ type GetData struct {
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
 	var id int
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
-	// idInt, _ = strconv.Atoi(id)
 	if err != nil || id < 1 {
 		http.Error(w, "ID not found", 400)
 		return
 	}
-	fmt.Println(id)
-	//	api.Del(id)
+	// fmt.Println(id)
+	api.Del(id)
 }
 
 func insertTodo(w http.ResponseWriter, r *http.Request) {
