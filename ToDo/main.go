@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -12,6 +13,17 @@ import (
 type GetData struct {
 	Name string `json:"name"`
 	Todo string `json:"todo"`
+}
+
+func searchTodo(w http.ResponseWriter, r *http.Request) {
+	var id int
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	if err != nil || id < 1 {
+		http.Error(w, "ID not found", 400)
+		return
+	}
+	fmt.Println(id)
+	api.Search(id)
 }
 
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
@@ -43,6 +55,7 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
+	http.HandleFunc("/search", searchTodo)
 	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodGet:
