@@ -10,24 +10,23 @@ function clickbtn() {
             "name": nameValue,
             "todo": todoValue
         };
-    }else{
+    } else {
         console.log("IDが正しくありません");
     }
     // console.log(obj);
-    var jsonValues = JSON.stringify(obj);
-    console.log(jsonValues);
+    var changeJson = JSON.stringify(obj);
+    console.log(changeJson);
 
-    fetch(`http://localhost:8081/todos`, {
+    fetch('http://localhost:8081/todos', {
         method: "PUT",
-        headers: { 
-            'Content-Type': 'application/json',
-        },
-        body: jsonValues,
+        body: changeJson,
     }).then(function(response1) {
         console.log(response1.status);
-    }).then(function(data1) {
+    })
+    .then(function(data1) {
         console.log(body);
-    }).catch(function(err1) {
+    })
+    .catch(function(err1) {
         console.log("err =" + err1);
     });
 }
