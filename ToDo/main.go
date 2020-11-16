@@ -33,7 +33,6 @@ func deleteTodo(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "ID not found", 400)
 		return
 	}
-	// fmt.Println(id)
 	api.Del(id)
 }
 

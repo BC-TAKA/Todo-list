@@ -19,8 +19,3 @@ fetch(`http://localhost:8081/search?id=${id}`, {
 }).catch((err) => {
     console.log(err);
 });
-
-
-// const name = document.getElementById("nameValue");
-// const todo = document.getElementById("todoValue");
-

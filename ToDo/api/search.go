@@ -14,9 +14,9 @@ type SearchElements struct {
 
 func Search(id int) []SearchElements {
 	var searchId int
-	var searchName string
-	var searchTodo string
-	searchList := []SearchElements{}
+	var name string
+	var TODO string
+	SearchResult := []SearchElements{}
 
 	db := common.DbConn()
 	rows, err := db.Query("SELECT * FROM todolist WHERE id=?", id)
@@ -24,16 +24,17 @@ func Search(id int) []SearchElements {
 		log.Fatal(err)
 	}
 	for rows.Next() {
-		err := rows.Scan(&id, &searchName, &searchTodo)
+		err := rows.Scan(&searchId, &name, &TODO)
 		if err != nil {
 			log.Fatal(err)
 		}
 		base := SearchElements{
-			ID:   id,
-			Name: searchName,
-			Todo: searchTodo,
+			ID:   searchId,
+			Name: name,
+			Todo: TODO,
 		}
 		SearchResult = append(SearchResult, base)
 	}
+	log.Println(SearchResult)
 	return SearchResult
 }
