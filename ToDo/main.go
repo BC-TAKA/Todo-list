@@ -62,6 +62,7 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
+	// http.HandleFunc("/update", updateTodo)
 	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
 		//機能はrequestの内容で分岐
 		switch r.Method {
