@@ -5,26 +5,24 @@ fetch('http://localhost:8081/todos')
         // JSONパースされたオブジェクトが渡される
         const parent = document.getElementById("parent");
 
+        //一覧をpタグに格納し、削除ボタンとともに表示
         userInfo.forEach(info => {
-            const aTag = document.createElement("a");
+            const pTag = document.createElement("p");
             const btn = document.createElement("button");
 
             Object.entries(info).forEach(([key, val]) => {
                 const span = document.createElement("span");
                 span.innerText = `${key}: ${val}  `;
-                aTag.appendChild(span);
-                //htmlに3つの値をを渡すことで遷移先を分岐させたい
-                aTag.setAttribute('href','/detail/detail.html?' +info.ID);
+                pTag.appendChild(span);
                 btn.textContent = "削除";
                 btn.value = "info.ID";
             });
-            parent.appendChild(aTag);
+            parent.appendChild(pTag);
             parent.appendChild(btn);
             parent.appendChild(document.createElement("br"));
             parent.appendChild(document.createElement("br"));
             console.log(info.ID,info.Name,info.Todo);
             btn.onclick = function() {
-                //console.log(info.ID);
                 const id = info.ID;
                 console.log(id);
                 fetch(`http://localhost:8081/todos?id=${id}`, {
@@ -33,7 +31,6 @@ fetch('http://localhost:8081/todos')
                     if (response.ok) {
                         console.log("削除しました。");
                         console.log(id);
-                        //表示内容を更新させる文
                     } else {
                         console.log("エラーです。");
                     }
