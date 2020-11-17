@@ -23,12 +23,15 @@ type UpdateData struct {
 }
 
 func updateTodo(w http.ResponseWriter, r *http.Request) {
-	var todo api.UpdateData
-	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		http.Error(w, err.Error(), 400)
-		return
-	}
-	api.Update(todo)
+	decodeTodo := json.NewDecoder(r.Body)
+	var put UpdateData
+	decodeTodo.Decode(&put)
+	log.Println(put)
+	// if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
+	//  	http.Error(w, err.Error(), 400)
+	// 	return
+	// }
+	// api.Update(todo)
 }
 
 //delete.go

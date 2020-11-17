@@ -14,12 +14,12 @@ function clickbtn() {
         console.log("IDが正しくありません");
     }
     // console.log(obj);
-    var changeJson = JSON.stringify(obj);
-    console.log(changeJson);
+    // var changeJson = JSON.stringify(obj);
+    // console.log(changeJson);
 
     fetch('http://localhost:8081/todos', {
         method: "PUT",
-        body: changeJson,
+        body: JSON.stringify(obj),
     }).then(function(response1) {
         console.log(response1.status);
     })
