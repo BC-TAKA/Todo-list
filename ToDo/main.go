@@ -17,21 +17,19 @@ type GetData struct {
 
 //UPDATE用の構造体
 type UpdateData struct {
-	ID   int    `json:"id"`
+	ID   string `json:"id"`
 	Name string `json:"name"`
 	Todo string `json:"todo"`
 }
 
+//update.go
 func updateTodo(w http.ResponseWriter, r *http.Request) {
-	decodeTodo := json.NewDecoder(r.Body)
-	var put UpdateData
-	decodeTodo.Decode(&put)
-	log.Println(put)
-	// if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-	//  	http.Error(w, err.Error(), 400)
-	// 	return
-	// }
-	// api.Update(todo)
+	var todo api.UpdateData
+	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
+		http.Error(w, err.Error(), 400)
+		return
+	}
+	api.Update(todo)
 }
 
 //delete.go
@@ -65,7 +63,6 @@ func listEncode(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
-	// http.HandleFunc("/update", updateTodo)
 	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
 		//機能はrequestの内容で分岐
 		switch r.Method {

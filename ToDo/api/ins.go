@@ -12,7 +12,7 @@ type GetData struct {
 	Todo string `json:"todo"`
 }
 
-//DBに登録を行う関数
+//INSERT処理を行う関数
 func Ins(todo GetData) {
 	log.Println(todo)
 

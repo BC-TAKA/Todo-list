@@ -1,14 +1,25 @@
 package api
 
-import "log"
+import (
+	"log"
+
+	"github.com/raveger/Todo-list/ToDo/common"
+)
 
 type UpdateData struct {
-	ID   int    `json:"id"`
+	ID   string `json:"id"`
 	Name string `json:"name"`
 	Todo string `json:"todo"`
 }
 
+//UPDATE処理を行う関数
 func Update(todo UpdateData) {
-	log.Println(todo)
-
+	db := common.DbConn()
+	_, err := db.Exec(
+		`UPDATE todolist SET name=?, TODO=? WHERE id=?`,
+		todo.Name, todo.Todo, todo.ID,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

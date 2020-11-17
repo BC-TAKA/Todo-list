@@ -1,10 +1,11 @@
 function clickbtn() {
+    //全てstringとして取り出している
     const idValue = document.getElementById("idValue").value;
     const nameValue = document.getElementById("nameValue").value;
     const todoValue = document.getElementById("todoValue").value;
 
-    //入力されたIDが整数なら入力内容をオブジェクト化
-    if (isFinite(idValue)) {
+    //入力されたIDが0より大きい整数なら入力内容をオブジェクト化
+    if (isFinite(idValue) && 0 < idValue) {
         var obj = {
             "id": idValue,
             "name": nameValue,
@@ -12,10 +13,8 @@ function clickbtn() {
         };
     } else {
         console.log("IDが正しくありません");
+        return
     }
-    // console.log(obj);
-    // var changeJson = JSON.stringify(obj);
-    // console.log(changeJson);
 
     fetch('http://localhost:8081/todos', {
         method: "PUT",
@@ -30,27 +29,3 @@ function clickbtn() {
         console.log("err =" + err1);
     });
 }
-
-
-
-// //選択されたaタグのURLを取得
-// var url = document.location.href;
-
-// //URLと末尾のIDを分割して配列に格納・・・IDはresult[1]に入る
-// var result = url.split('?');
-
-// //変数idにIDを格納
-// id = result[1];
-// console.log(id);
-
-// fetch(`http://localhost:8081/search?id=${id}`, {
-//     method: 'GET',
-// }).then((response) => {
-//     if (response.ok) {
-//         console.log(id);
-//     } else {
-//         console.log("エラーです。");
-//     }
-// }).catch((err) => {
-//     console.log(err);
-// });
