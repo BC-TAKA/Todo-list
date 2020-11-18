@@ -12,10 +12,13 @@ type Listup struct {
 	Todo string
 }
 
-func List() []Listup {
-	var id int
-	var name string
-	var TODO string
+func GetTODOs() []Listup {
+	var (
+		id   int
+		name string
+		TODO string
+	)
+
 	baseList := []Listup{}
 
 	db := common.DbConn()

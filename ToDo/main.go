@@ -26,7 +26,7 @@ type UpdateData struct {
 func updateTodo(w http.ResponseWriter, r *http.Request) {
 	var todo api.UpdateData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		http.Error(w, err.Error(), 400)
+		log.Println(err)
 		return
 	}
 	api.Update(todo)
@@ -34,28 +34,28 @@ func updateTodo(w http.ResponseWriter, r *http.Request) {
 
 //delete.go
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
-	var id int
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	//登録しているIDが1からなので、1より小さい数値をエラーとして検出する
 	if err != nil || id < 1 {
-		http.Error(w, "ID not found", 400)
+		log.Println(err)
 		return
 	}
-	api.Del(id)
+	api.DeleteTODO(id)
 }
 
 //ins.go
-func insertTodo(w http.ResponseWriter, r *http.Request) {
+func createTODO(w http.ResponseWriter, r *http.Request) {
 	var todo api.GetData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		http.Error(w, err.Error(), 400)
+		log.Println(err)
 		return
 	}
-	api.Ins(todo)
+	api.CreateTODO(todo)
 }
 
 //get.go
-func listEncode(w http.ResponseWriter, r *http.Request) {
-	todos := api.List()
+func getTODOs(w http.ResponseWriter, r *http.Request) {
+	todos := api.GetTODOs()
 	ecd := json.NewEncoder(w)
 	ecd.Encode(&todos)
 }
@@ -67,9 +67,9 @@ func main() {
 		//機能はrequestの内容で分岐
 		switch r.Method {
 		case http.MethodGet:
-			listEncode(w, r)
+			getTODOs(w, r)
 		case http.MethodPost:
-			insertTodo(w, r)
+			createTODO(w, r)
 		case http.MethodDelete:
 			deleteTodo(w, r)
 		case http.MethodPut:

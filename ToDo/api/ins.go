@@ -13,9 +13,7 @@ type GetData struct {
 }
 
 //INSERT処理を行う関数
-func Ins(todo GetData) {
-	log.Println(todo)
-
+func CreateTODO(todo GetData) {
 	db := common.DbConn()
 	_, err := db.Exec(
 		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,

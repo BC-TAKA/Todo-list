@@ -8,6 +8,7 @@ fetch('http://localhost:8081/todos')
         //一覧をpタグに格納し、削除ボタンとともに表示
         userInfo.forEach(info => {
             const pTag = document.createElement("p");
+            const btn = document.createElement("button");
 
             Object.entries(info).forEach(([key, val]) => {
                 const span = document.createElement("span");
