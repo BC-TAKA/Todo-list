@@ -24,7 +24,7 @@ func updateTodo(w http.ResponseWriter, r *http.Request) {
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 
-	//登録しているIDが1からなので、1より小さい数値をエラーとして検出する
+	//登録しているIDが1からなので、1より小さい数値もエラーとして検出する
 	if err != nil || id < 1 {
 		log.Println(err)
 		return
@@ -45,8 +45,12 @@ func createTODO(w http.ResponseWriter, r *http.Request) {
 //get.go
 func getTODOs(w http.ResponseWriter, r *http.Request) {
 	todos := api.GetTODOs()
-	ecd := json.NewEncoder(w)
-	ecd.Encode(&todos)
+	if err := json.NewEncoder(w).Encode(&todos); err != nil {
+		log.Println(err)
+		return
+	}
+	// ecd := json.NewEncoder(w)
+	// ecd.Encode(&todos)
 }
 
 func main() {

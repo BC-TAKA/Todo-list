@@ -18,10 +18,8 @@ func GetTODOs() []model.Listup {
 	baseList := []model.Listup{}
 
 	db := common.DbConn()
-	rows, err := db.Query("SELECT * FROM todolist")
-	if err != nil {
-		log.Fatal(err)
-	}
+	rows, _ := db.Query("SELECT * FROM todolist")
+
 	for rows.Next() {
 		err := rows.Scan(&id, &name, &TODO)
 		if err != nil {

@@ -9,7 +9,10 @@ import (
 //DELETE処理を行う関数
 func DeleteTODO(id int) {
 	db := common.DbConn()
-	if _, err := db.Exec("DELETE FROM todolist WHERE id=?", id); err != nil {
+	_, err := db.Exec("DELETE FROM todolist WHERE id=?", id)
+
+	if err != nil {
 		log.Fatal(err)
+		return
 	}
 }

@@ -32,8 +32,9 @@ fetch('http://localhost:8081/todos')
                     } else {
                         alert(err);
                     }
-                }).catch((err) => {
-                    alert(err);
+                })
+                .catch((err) => {
+                    console.error("err =" + err);
                 });
             }
         });

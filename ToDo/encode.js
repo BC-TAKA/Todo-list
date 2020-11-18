@@ -16,15 +16,14 @@ function createTodo() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(obj),
-    }).then((response1) => {
-        if (response1.ok) {
+    }).then((response) => {
+        if (response.ok) {
             alert("登録が完了しました。");
         } else {
-            alert("エラーです。");
+            alert(err);
         }
-        console.log("status=" + response.status);
     })
-    .catch(function(err1) {
-        console.error("err=" + err1);
+    .catch((err) => {
+        console.error("err=" + err);
     });
 }
