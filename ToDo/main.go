@@ -7,24 +7,12 @@ import (
 	"strconv"
 
 	"github.com/raveger/Todo-list/ToDo/api"
+	"github.com/raveger/Todo-list/ToDo/model"
 )
-
-//INSERT用の構造体
-type GetData struct {
-	Name string `json:"name"`
-	Todo string `json:"todo"`
-}
-
-//UPDATE用の構造体
-type UpdateData struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-	Todo string `json:"todo"`
-}
 
 //update.go
 func updateTodo(w http.ResponseWriter, r *http.Request) {
-	var todo api.UpdateData
+	var todo model.UpdateData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
 		log.Println(err)
 		return
@@ -35,6 +23,7 @@ func updateTodo(w http.ResponseWriter, r *http.Request) {
 //delete.go
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+
 	//登録しているIDが1からなので、1より小さい数値をエラーとして検出する
 	if err != nil || id < 1 {
 		log.Println(err)
@@ -45,7 +34,7 @@ func deleteTodo(w http.ResponseWriter, r *http.Request) {
 
 //ins.go
 func createTODO(w http.ResponseWriter, r *http.Request) {
-	var todo api.GetData
+	var todo model.GetData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
 		log.Println(err)
 		return

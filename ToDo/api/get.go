@@ -4,23 +4,18 @@ import (
 	"log"
 
 	"github.com/raveger/Todo-list/ToDo/common"
+	"github.com/raveger/Todo-list/ToDo/model"
 )
 
-//最後にこれだけを実施
-type Listup struct {
-	ID   int
-	Name string
-	Todo string
-}
-
-func GetTODOs() []Listup {
+//全件取得を行う関数
+func GetTODOs() []model.Listup {
 	var (
 		id   int
 		name string
 		TODO string
 	)
 
-	baseList := []Listup{}
+	baseList := []model.Listup{}
 
 	db := common.DbConn()
 	rows, err := db.Query("SELECT * FROM todolist")
@@ -32,7 +27,7 @@ func GetTODOs() []Listup {
 		if err != nil {
 			log.Fatal(err)
 		}
-		base := Listup{
+		base := model.Listup{
 			ID:   id,
 			Name: name,
 			Todo: TODO,

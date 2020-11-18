@@ -5,15 +5,11 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/raveger/Todo-list/ToDo/common"
+	"github.com/raveger/Todo-list/ToDo/model"
 )
 
-type GetData struct {
-	Name string `json:"name"`
-	Todo string `json:"todo"`
-}
-
 //INSERT処理を行う関数
-func CreateTODO(todo GetData) {
+func CreateTODO(todo model.GetData) {
 	db := common.DbConn()
 	_, err := db.Exec(
 		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,

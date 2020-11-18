@@ -6,6 +6,7 @@ import (
 	"github.com/raveger/Todo-list/ToDo/common"
 )
 
+//DELETE処理を行う関数
 func DeleteTODO(id int) {
 	log.Println(id)
 	db := common.DbConn()
