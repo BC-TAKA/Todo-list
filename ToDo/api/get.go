@@ -6,6 +6,7 @@ import (
 	"github.com/raveger/Todo-list/ToDo/common"
 )
 
+//最後にこれだけを実施
 type Listup struct {
 	ID   int
 	Name string

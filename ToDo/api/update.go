@@ -6,6 +6,7 @@ import (
 	"github.com/raveger/Todo-list/ToDo/common"
 )
 
+//update.go---UPDATE用の構造体
 type UpdateData struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
