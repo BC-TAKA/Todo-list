@@ -1,59 +1,62 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"log"
 	"net/http"
 	"strconv"
 
 	"github.com/raveger/Todo-list/ToDo/api"
+	"github.com/raveger/Todo-list/ToDo/common"
 	"github.com/raveger/Todo-list/ToDo/model"
 )
 
+//パッケージ変数DBを定義
+var DB *sql.DB
+
 //update.go
-func updateTodo(w http.ResponseWriter, r *http.Request) {
-	var todo model.UpdateData
+func updateTODO(w http.ResponseWriter, r *http.Request) {
+	var todo model.TodoData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		log.Println(err)
+		http.Error(w, err.Error(), 400)
 		return
 	}
-	api.Update(todo)
+	api.UpdateTODO(todo, DB)
 }
 
 //delete.go
-func deleteTodo(w http.ResponseWriter, r *http.Request) {
+func deleteTODO(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
-
-	//登録しているIDが1からなので、1より小さい数値もエラーとして検出する
-	if err != nil || id < 1 {
-		log.Println(err)
+	if err != nil {
+		http.Error(w, err.Error(), 400)
 		return
 	}
-	api.DeleteTODO(id)
+	api.DeleteTODO(id, DB)
 }
 
 //ins.go
 func createTODO(w http.ResponseWriter, r *http.Request) {
-	var todo model.GetData
+	var todo model.TodoData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		log.Println(err)
+		http.Error(w, err.Error(), 400)
 		return
 	}
-	api.CreateTODO(todo)
+	api.CreateTODO(todo, DB)
 }
 
 //get.go
 func getTODOs(w http.ResponseWriter, r *http.Request) {
-	todos := api.GetTODOs()
+	todos := api.GetTODOs(DB)
 	if err := json.NewEncoder(w).Encode(&todos); err != nil {
-		log.Println(err)
+		http.Error(w, err.Error(), 500)
 		return
 	}
-	// ecd := json.NewEncoder(w)
-	// ecd.Encode(&todos)
 }
 
 func main() {
+	//パッケージ変数DBにDB接続処理機能を代入
+	DB = common.DbConn()
 	//http.Handleでサーバー接続
 	http.Handle("/", http.FileServer(http.Dir(".")))
 	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
@@ -64,9 +67,9 @@ func main() {
 		case http.MethodPost:
 			createTODO(w, r)
 		case http.MethodDelete:
-			deleteTodo(w, r)
+			deleteTODO(w, r)
 		case http.MethodPut:
-			updateTodo(w, r)
+			updateTODO(w, r)
 		}
 	})
 	log.Fatal(http.ListenAndServe(":8081", nil))

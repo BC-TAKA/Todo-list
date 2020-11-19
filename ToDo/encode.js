@@ -1,12 +1,12 @@
 //登録ボタンクリックをトリガーにnameとtodoの値を取得
 function createTodo() {
-    const nameValue = document.getElementById("valueName").value;
-    const todoValue = document.getElementById("valueTodo").value;
+    const name = document.getElementById("valueName").value;
+    const todo = document.getElementById("valueTodo").value;
     
     //オブジェクト化
-    const obj = {
-        "name": nameValue,
-        "todo": todoValue
+    const todos = {
+        "name": name,
+        "todo": todo
     };
 
     //fetchでJSON形式に換えてAPIに送信する
@@ -15,7 +15,7 @@ function createTodo() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(obj),
+        body: JSON.stringify(todos),
     }).then((response) => {
         if (response.ok) {
             alert("登録が完了しました。");

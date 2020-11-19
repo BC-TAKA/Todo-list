@@ -24,6 +24,7 @@ fetch('http://localhost:8081/todos')
             //以下、削除ボタンの処理内容
             deleteBTN.onclick = function() {
                 const id = info.ID;
+                console.log(id);
                 fetch(`http://localhost:8081/todos?id=${id}`, {
                     method: 'DELETE',
                 }).then((response) => {

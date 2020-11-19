@@ -1,20 +1,19 @@
 package api
 
 import (
-	"log"
+	"database/sql"
 
-	"github.com/raveger/Todo-list/ToDo/common"
 	"github.com/raveger/Todo-list/ToDo/model"
 )
 
 //UPDATE処理を行う関数
-func Update(todo model.UpdateData) {
-	db := common.DbConn()
-	_, err := db.Exec(
+func UpdateTODO(todo model.TodoData, DB *sql.DB) error {
+	_, err := DB.Exec(
 		`UPDATE todolist SET name=?, TODO=? WHERE id=?`,
 		todo.Name, todo.Todo, todo.ID,
 	)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+	return nil
 }
