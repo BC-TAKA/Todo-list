@@ -22,7 +22,11 @@ func updateTODO(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 400)
 		return
 	}
-	api.UpdateTODO(todo, DB)
+	if err := api.UpdateTODO(todo, DB); err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), 500)
+		return
+	}
 }
 
 //delete.go
@@ -32,7 +36,11 @@ func deleteTODO(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 400)
 		return
 	}
-	api.DeleteTODO(id, DB)
+	if err = api.DeleteTODO(id, DB); err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), 500)
+		return
+	}
 }
 
 //ins.go
@@ -40,9 +48,14 @@ func createTODO(w http.ResponseWriter, r *http.Request) {
 	var todo model.TodoData
 	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
 		http.Error(w, err.Error(), 400)
+		log.Println(err)
 		return
 	}
-	api.CreateTODO(todo, DB)
+	if err := api.CreateTODO(todo, DB); err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), 500)
+		return
+	}
 }
 
 //get.go
@@ -50,6 +63,7 @@ func getTODOs(w http.ResponseWriter, r *http.Request) {
 	todos := api.GetTODOs(DB)
 	if err := json.NewEncoder(w).Encode(&todos); err != nil {
 		http.Error(w, err.Error(), 500)
+		log.Println(err)
 		return
 	}
 }

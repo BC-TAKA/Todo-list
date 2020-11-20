@@ -4,7 +4,7 @@ function createTodo() {
     const todo = document.getElementById("valueTodo").value;
     
     //オブジェクト化
-    const todos = {
+    const createTodo = {
         "name": name,
         "todo": todo
     };
@@ -15,7 +15,7 @@ function createTodo() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(todos),
+        body: JSON.stringify(createTodo),
     }).then((response) => {
         if (response.ok) {
             alert("登録が完了しました。");
