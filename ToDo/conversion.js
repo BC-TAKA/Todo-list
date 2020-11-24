@@ -4,7 +4,7 @@ fetch('http://localhost:8081/todos')
         // JSONパースされたオブジェクトが渡される
         const parent = document.getElementById("parent");
 
-        //一覧をpタグに格納し、削除ボタンとともに表示
+        // 一覧をpタグに格納し、削除ボタンとともに表示
         userInfo.forEach(info => {
             const pTag = document.createElement("p");
             const deleteBTN = document.createElement("button");
@@ -21,7 +21,7 @@ fetch('http://localhost:8081/todos')
             parent.appendChild(document.createElement("br"));
             parent.appendChild(document.createElement("br"));
 
-            //以下、削除ボタンの処理内容
+            // 以下、削除ボタンの処理内容
             deleteBTN.onclick = function() {
                 const id = info.ID;
                 fetch(`http://localhost:8081/todos?id=${id}`, {

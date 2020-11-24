@@ -7,7 +7,7 @@ import (
 	"github.com/raveger/Todo-list/ToDo/model"
 )
 
-//全件取得を行う関数
+// 全件取得を行う関数
 func GetTODOs(DB *sql.DB) []model.Listup {
 	var (
 		id   int
