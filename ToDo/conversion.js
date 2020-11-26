@@ -10,5 +10,8 @@ var app = new Vue ({
         }.bind(this)).catch(function(e){
             console.error(e)
         })
+    },
+    methods: {
+        
     }
 })
