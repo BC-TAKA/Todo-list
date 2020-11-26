@@ -6,7 +6,28 @@
         <title>ToDo一覧</title>
     </head>
     <body>
+        <div id="app">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Todo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in list" v-bind:key="item.id">
+                        <td>No.{{ item.ID }}</td>
+                        <td>{{ item.Name }}</td>
+                        <td>{{ item.Todo }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- <div class="list_display" id="parent"></div> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
         <script src="../conversion.js"></script>
-        <div class="list_display" id="parent"></div>
     </body>
 </html>
