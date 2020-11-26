@@ -3,15 +3,17 @@ var app = new Vue ({
     data: {
         list: []
     },
-    created: function() {
-        axios.get('http://localhost:8081/todos')
-        .then(function(response) {
-            this.list = response.data
-        }.bind(this)).catch(function(e){
-            console.error(e)
-        })
+    created() {
+        this.getTODOs()
     },
     methods: {
-        
+        async getTODOs() {
+            try {
+                let response = await axios.get('http://localhost:8081/todos')
+                this.list = response.data
+            } catch (e) {
+                console.error(e)
+            }
+        }
     }
 })
