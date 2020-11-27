@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>main menu</title>
-        <link rel = "stylesheet" href = "index.css" >
+        <title>ToDoApp</title>
     </head>
     <body>
-        <div class = "main">
-            <div class = "main_wrapper">
-                <!--機能一覧-->
-                <div class = "contents">
-                    <div class = "new_regist btn">
-                        <!--新規登録画面へ遷移-->
-                        <a href = "/regist/regist.html">新規登録</a>
-                    </div>
-                    <div class = "list_display btn">
-                        <!--Todo一覧表示画面へ遷移-->
-                        <a href = "/display/display.html">一覧表示</a>
-                    </div>
-                    <div class = "update btn">
-                        <a href = "/update/update.html">内容変更</a>
-                    </div>
-                </div>
-            </div>
+        <div id="app">
+            <p>新規登録欄</p>
+            Name: <input v-model="createTodoForm.name" placeholder="件名を入力">
+            Todo: <input v-model="createTodoForm.todo" placeholder="内容を入力">
+            <button v-on:click="doAdd">新規登録</button>
+            <hr>
+            <p>内容更新欄</p>
+            ID: <input v-model="updateTodoForm.id" placeholder="IDを入力">
+            Name: <input v-model="updateTodoForm.name" placeholder="件名を入力">
+            Todo: <input v-model="updateTodoForm.todo" placeholder="内容を入力">
+            <button v-on:click="doUpdate">内容を更新</button>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Todo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="todo in todos" v-bind:key="todo.id">
+                        <td>No.{{ todo.ID }}</td>
+                        <td>{{ todo.Name }}</td>
+                        <td>{{ todo.Todo }}</td>
+                        <td><button v-on:click="doRemove(todo)">削除</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>

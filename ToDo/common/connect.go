@@ -2,13 +2,11 @@ package common
 
 import (
 	"database/sql"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
-//インスタンスするための空の構造体
-type Conn struct{}
-
-//DBに接続するための関数
+// DBに接続するための関数
 func DbConn() *sql.DB {
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo")
 	if err != nil {

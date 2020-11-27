@@ -1,21 +1,20 @@
 package api
 
 import (
-	"log"
+	"database/sql"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/raveger/Todo-list/ToDo/common"
 	"github.com/raveger/Todo-list/ToDo/model"
 )
 
-//INSERT処理を行う関数
-func CreateTODO(todo model.GetData) {
-	db := common.DbConn()
-	_, err := db.Exec(
-		`INSERT INTO todolist(name,TODO) VALUES(?,?)`,
+// INSERT処理を行う関数
+func CreateTODO(todo model.TODO, DB *sql.DB) error {
+	_, err := DB.Exec(
+		`INSERT INTO todolist(name,TODO) VALUES( ? , ? )`,
 		todo.Name, todo.Todo,
 	)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+	return nil
 }
