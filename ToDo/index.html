@@ -8,14 +8,14 @@
     <body>
         <div id="app">
             <p>新規登録欄</p>
-            Name: <input v-model="create.name" placeholder="件名を入力">
-            Todo: <input v-model="create.todo" placeholder="内容を入力">
+            Name: <input v-model="createTodoForm.name" placeholder="件名を入力">
+            Todo: <input v-model="createTodoForm.todo" placeholder="内容を入力">
             <button v-on:click="doAdd">新規登録</button>
             <hr>
             <p>内容更新欄</p>
-            ID: <input v-model="update.id" placeholder="IDを入力">
-            Name: <input v-model="update.name" placeholder="件名を入力">
-            Todo: <input v-model="update.todo" placeholder="内容を入力">
+            ID: <input v-model="updateTodoForm.id" placeholder="IDを入力">
+            Name: <input v-model="updateTodoForm.name" placeholder="件名を入力">
+            Todo: <input v-model="updateTodoForm.todo" placeholder="内容を入力">
             <button v-on:click="doUpdate">内容を更新</button>
             <hr>
             <table>
