@@ -12,7 +12,8 @@
         <div id="app">
             <v-app>
                 <v-main>
-                    <p>新規登録欄</p>
+                    <div class="mx-2">
+                    <h3 class="font-weight-bold">新規登録欄</h3>
                     <template>
                         <v-form>
                             <v-conteiner>
@@ -20,18 +21,23 @@
                                     <v-col cols="12" sm="4">
                                         Name
                                         <v-text-field
-                                        v-model="createTodoForm.name"
-                                        label="件名を入力"
+                                            v-model="createTodoForm.name"
+                                            label="件名を入力"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         Todo
                                         <v-text-field
-                                        v-model="createTodoForm.todo"
-                                        label="内容を入力"
+                                            v-model="createTodoForm.todo"
+                                            label="内容を入力"
                                         >
                                             <template v-slot:append-outer>
-                                                <v-btn dark rounded color="red" v-on:click="doAdd">新規登録</v-btn>
+                                                <v-btn
+                                                    dark
+                                                    rounded
+                                                    color="red"
+                                                    v-on:click="doAdd"
+                                                >新規登録</v-btn>
                                             </template>
                                         </v-text-field>
                                     </v-col>
@@ -39,8 +45,8 @@
                             </v-conteiner>
                         </v-form>
                     </template>
-                    <hr>
-                    <p>内容更新欄</p>
+                <hr>
+                    <h3 class="font-weight-bold">内容更新欄</h3>
                         <template>
                             <v-form>
                                 <v-conteiner>
@@ -48,25 +54,30 @@
                                         <v-col cols="12" sm="1">
                                             ID
                                             <v-text-field
-                                            v-model="updateTodoForm.id"
-                                            label="IDを入力"
+                                                v-model="updateTodoForm.id"
+                                                label="IDを入力"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="4">
                                             Name
                                             <v-text-field
-                                            v-model="updateTodoForm.name"
-                                            label="件名を入力"
+                                                v-model="updateTodoForm.name"
+                                                label="件名を入力"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="7">
                                             Todo
                                             <v-text-field
-                                            v-model="updateTodoForm.todo"
-                                            label="内容を入力"
+                                                v-model="updateTodoForm.todo"
+                                                label="内容を入力"
                                             >
                                                 <template v-slot:append-outer>
-                                                    <v-btn dark rounded v-on:click="doUpdate">内容を更新</v-btn>
+                                                    <v-btn
+                                                        dark
+                                                        rounded
+                                                        color="blue"
+                                                        v-on:click="doUpdate"
+                                                    >内容を更新</v-btn>
                                                 </template>
                                             </v-text-field>
                                         </v-col>
@@ -74,9 +85,9 @@
                                 </v-conteiner>
                             </v-form>
                     </template>
-                    <hr>
+                <hr>
                     <template>
-                        <v-simple-table>
+                        <v-simple-table dark fixed-header height="500px">
                             <template v-slot:default>
                                 <thead>
                                     <tr>
@@ -90,12 +101,19 @@
                                         <td>No.{{ todo.ID }}</td>
                                         <td>{{ todo.Name }}</td>
                                         <td>{{ todo.Todo }}</td>
-                                        <td><v-btn dark rounded v-on:click="doRemove(todo)">削除</v-btn></td>
+                                        <td>
+                                            <v-btn
+                                                dark
+                                                rounded
+                                                v-on:click="doRemove(todo)"
+                                            >削除</v-btn>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </template>
                         </v-simple-table>
                     </template>
+                </div>
                 </v-main>
             </v-app>
         </div>
